@@ -1,19 +1,19 @@
 import { get, memoize } from './index'
 
 const object = {
-  a: [{ b: { c: 3 } }],
-  name: 'jack',
-  score: {
-    maths: 98,
-  },
-};
+	a: [{ b: { c: 3 } }],
+	name: 'jack',
+	score: {
+		maths: 98,
+	},
+}
 
-console.log('test ', get(object, 'a[0].b'));
-console.log('test ', get(object, 'a[0].b.c'));
-console.log('test ', get(object, 'a.b.c', 'DEFAULT_DATA'));
-console.log('test ', get(object, 'score.maths'));
-console.log('test ', get(object, ['score', 'maths'], 'score.maths'));
-console.log('test ', get(object, 'a[0]', '---'));
+console.log('test ', get(object, 'a[0].b'))
+console.log('test ', get(object, 'a[0].b.c'))
+console.log('test ', get(object, 'a.b.c', 'DEFAULT_DATA'))
+console.log('test ', get(object, 'score.maths'))
+console.log('test ', get(object, ['score', 'maths'], 'score.maths'))
+console.log('test ', get(object, 'a[0]', '---'))
 
 // console.log('stringToPath: ', stringToPath('.a[0].b.c'));
 
