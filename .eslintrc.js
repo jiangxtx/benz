@@ -10,7 +10,11 @@ module.exports = {
     sourceType: 'module',
   },
   //定义文件继承的子规范
-  extends: ['plugin:@typescript-eslint/recommended', 'prettier/@typescript-eslint', 'plugin:prettier/recommended'],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'prettier/@typescript-eslint',
+    'plugin:prettier/recommended',
+  ],
   //定义了该eslint文件所依赖的插件
   plugins: ['@typescript-eslint', 'react'],
   env: {
