@@ -6,5 +6,5 @@
  * @author: jiangxtx
  */
 
-export { default as get } from './get';
-export { default as memoize } from './memoize';
+export { default as get } from './get'
+export { default as memoize } from './memoize'
