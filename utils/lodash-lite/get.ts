@@ -130,7 +130,7 @@ function baseGet(object, path) {
  * @param {*} defaultValue
  * @return {object}
  */
-function get(object, path, defaultValue) {
+function get(object, path, defaultValue): any {
 	const result = object == null ? undefined : baseGet(object, path)
 	return result === undefined ? defaultValue : result
 }

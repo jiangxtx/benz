@@ -23,7 +23,10 @@
         "experimentalDecorators": true,
         "resolveJsonModule": true,
         "maxNodeModuleJsDepth": 3,
-        "paths": { }
+        "paths": {
+            "utils": ["utils/*"],
+            "widgets": ["widgets/*"],
+         }
     },
     "exclude": [
         ".happypack",
@@ -32,8 +35,5 @@
         "server-dist",
         "static-dist",
         "node_modules"
-    ],
-    "files": [
-        "typings/declarations.d.ts"
     ]
 }

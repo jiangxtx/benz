@@ -30,7 +30,7 @@ function memoize(func) {
 		const result = func(...args)
 
 		// 缓存数量溢出时 清空所有cache
-		const cacheKeys = Object.keys[cache] || []
+		const cacheKeys = Object.keys(cache) || []
 		if (cacheKeys.length > MAX_MEMOIZE_SIZE) {
 			cache = {}
 		}
