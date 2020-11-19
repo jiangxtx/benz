@@ -11,6 +11,7 @@ module.exports = {
   },
   //定义文件继承的子规范
   extends: [
+    'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier/@typescript-eslint',
     'plugin:prettier/recommended',

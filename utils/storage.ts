@@ -5,14 +5,14 @@
  */
 
 function saveMain(key: string, val: any, storage: any) {
-	if (!key) return
+  if (!key) return
 
-	if (val == null) {
-		storage.removeItem(key)
-		return
-	}
+  if (val == null) {
+    storage.removeItem(key)
+    return
+  }
 
-	storage.setItem(key, JSON.stringify(val))
+  storage.setItem(key, JSON.stringify(val))
 }
 
 /**
@@ -22,9 +22,9 @@ function saveMain(key: string, val: any, storage: any) {
  * @param val
  */
 function saveToLocal(key: string, val: any): void {
-	if (typeof localStorage === 'undefined') return
+  if (typeof localStorage === 'undefined') return
 
-	saveMain(key, val, localStorage)
+  saveMain(key, val, localStorage)
 }
 
 /**
@@ -33,22 +33,22 @@ function saveToLocal(key: string, val: any): void {
  * @param val
  */
 function saveToSession(key: string, val: any): void {
-	if (typeof sessionStorage === 'undefined') return
+  if (typeof sessionStorage === 'undefined') return
 
-	saveMain(key, val, sessionStorage)
+  saveMain(key, val, sessionStorage)
 }
 
 function getVal(key: string, storage: any) {
-	if (key == null) return null
+  if (key == null) return null
 
-	let val = null
-	try {
-		val = JSON.parse(storage.getItem(key))
-	} catch (e) {
-		// eslint-disable-next-line
+  let val = null
+  try {
+    val = JSON.parse(storage.getItem(key))
+  } catch (e) {
+    // eslint-disable-next-line
     console.error('getVal() Error while parsing value: ', e);
-	}
-	return val
+  }
+  return val
 }
 
 /**
@@ -57,9 +57,9 @@ function getVal(key: string, storage: any) {
  * @param val
  */
 function getFromLocal(key: string): any {
-	if (typeof localStorage === 'undefined') return undefined
+  if (typeof localStorage === 'undefined') return undefined
 
-	return getVal(key, localStorage)
+  return getVal(key, localStorage)
 }
 
 /**
@@ -68,14 +68,9 @@ function getFromLocal(key: string): any {
  * @param val
  */
 function getFromSession(key: string): any {
-	if (typeof sessionStorage === 'undefined') return undefined
+  if (typeof sessionStorage === 'undefined') return undefined
 
-	return getVal(key, sessionStorage)
+  return getVal(key, sessionStorage)
 }
 
-export {
-	saveToLocal,
-	saveToSession,
-	getFromLocal,
-	getFromSession,
-}
+export { saveToLocal, saveToSession, getFromLocal, getFromSession }
