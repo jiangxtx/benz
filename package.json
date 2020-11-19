@@ -25,8 +25,14 @@
     }
   },
   "lint-staged": {
-    "!(build/dist/script/**).{.js,.jsx,.ts,.tsx}": [
+    "*.{js,jsx,ts,tsx}": [
+      "tsc typings/declarations.d.ts",
       "eslint --fix",
+      "git add"
+    ],
+    "*.scss": [
+      "stylelint --fix --formatter verbose",
+      "prettier --write",
       "git add"
     ]
   },
