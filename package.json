@@ -26,7 +26,6 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "tsc typings/declarations.d.ts",
       "eslint --fix",
       "git add"
     ],
