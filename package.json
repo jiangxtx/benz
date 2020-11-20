@@ -4,7 +4,8 @@
   "description": "A collection of most common Utils, UIs, Componets, and so on. Aim to abstract codes away from the business in your projects.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "noPush": "echo \"Error: No Push in Company!!\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,8 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "commit-msg": "validate-commit-msg"
+      "commit-msg": "validate-commit-msg",
+      "pre-push": "npm run noPush"
     }
   },
   "lint-staged": {

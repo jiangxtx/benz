@@ -9,10 +9,10 @@
  * 解决措施：
  * + 针对1，采用throttle节流函数
  * + 针对2，事先约定好http采用Promise化，然后利用Promise的pending状态机制来控制
- * 
+ *
  * 备忘：
  * 	该文件原名为: clickThrottlePendingWrap，后于2020-11-18更名为: clickPendingWrap.ts。
- * 
+ *
  * 示例：
  * 	const onItemClick = clickPendingWrap(async () => {
  * 		const data = await store.queryGoodsList(params);
@@ -22,27 +22,27 @@
  * 	<div onClick={onItemClick}>Item Data</div>
  */
 
-// import {showWithoutBg as showSpinnerLoading,	hide as hideSpinner} from '@pdd/cui-spinner'
+// import {showWithoutBg as showSpinnerLoading,	hide as hideSpinner} from '@/cui-spinner'
 
 const isFunc = (fc) => typeof fc === 'function'
 
 function showSpinnerLoading() {
-	console.log('...showSpinnerLoading...')
+  console.log('...showSpinnerLoading...')
 }
 function hideSpinner() {
-	console.log('...hideSpinner...')
+  console.log('...hideSpinner...')
 }
 
 const DEFAULT_OPTIONS = {
-	showSpinner: true, // 点击后是否展示spinner
-	spinnerDelay: 300, // 延时展示spinner的阈值(ms)
-	throttleDelay: 1000, // 函数节流的时间间隔(ms)
+  showSpinner: true, // 点击后是否展示spinner
+  spinnerDelay: 300, // 延时展示spinner的阈值(ms)
+  throttleDelay: 1000, // 函数节流的时间间隔(ms)
 }
 
 type Options = {
-  showSpinner?: boolean;
-  spinnerDelay?: number;
-  throttleDelay?: number;
+  showSpinner?: boolean
+  spinnerDelay?: number
+  throttleDelay?: number
 }
 
 /**
@@ -56,59 +56,55 @@ type Options = {
  * @param options {object} 配置项
  */
 function clickPendingWrap(fc, options?: Options): (...args) => Promise<any> {
-	if (typeof window !== 'object') {
-		throw Error('clickPendingWrap() should be called in Client')
-	}
+  if (typeof window !== 'object') {
+    throw Error('clickPendingWrap() should be called in Client')
+  }
 
-	if (!isFunc(fc)) {
-		throw Error('First param "fc" must be a function')
-	}
+  if (!isFunc(fc)) {
+    throw Error('First param "fc" must be a function')
+  }
 
-	const {
-		showSpinner,
-		spinnerDelay,
-		throttleDelay,
-	} = { ...DEFAULT_OPTIONS, ...(options || {}) }
+  const { showSpinner, spinnerDelay, throttleDelay } = { ...DEFAULT_OPTIONS, ...(options || {}) }
 
-	let pendingFlag = false // Promise-pending执行状态锁
-	let promise = null
-	let delayTimer = null
-	let throttleLock = false // 节流锁
+  let pendingFlag = false // Promise-pending执行状态锁
+  let promise = null
+  let delayTimer = null
+  let throttleLock = false // 节流锁
 
-	return async function (...args) {
-		// console.log('>> click entering...', Date.now());
-		if (throttleLock || pendingFlag) {
-			return promise
-		}
+  return async function (...args) {
+    // console.log('>> click entering...', Date.now());
+    if (throttleLock || pendingFlag) {
+      return promise
+    }
 
-		throttleLock = true
-		pendingFlag = true
+    throttleLock = true
+    pendingFlag = true
 
-		setTimeout(() => {
-			throttleLock = false
-		}, throttleDelay)
+    setTimeout(() => {
+      throttleLock = false
+    }, throttleDelay)
 
-		// 处理需要过渡菊花的逻辑
-		if (showSpinner) {
-			delayTimer = setTimeout(() => {
-				showSpinnerLoading()
-			}, spinnerDelay)
-		}
-		try {
-			promise = fc.apply(this, args)
-			return await promise
-		} catch (err) {
-			throw err
-		} finally {
-			// 即便try中return了，finally里的代码依旧会执行
-			if (showSpinner) {
-				clearTimeout(delayTimer)
-				hideSpinner()
-			}
-			pendingFlag = false
-			promise = null
-		}
-	}
+    // 处理需要过渡菊花的逻辑
+    if (showSpinner) {
+      delayTimer = setTimeout(() => {
+        showSpinnerLoading()
+      }, spinnerDelay)
+    }
+    try {
+      promise = fc.apply(this, args)
+      return await promise
+    } catch (err) {
+      throw err
+    } finally {
+      // 即便try中return了，finally里的代码依旧会执行
+      if (showSpinner) {
+        clearTimeout(delayTimer)
+        hideSpinner()
+      }
+      pendingFlag = false
+      promise = null
+    }
+  }
 }
 
 export { clickPendingWrap }

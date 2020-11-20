@@ -80,7 +80,7 @@ let windowWidth = 0
 
 /**
  * 获取当前屏幕的宽度（单位px）
- * Note：部分参考了 @pdd/ui-util 中 getWindowWidth() 的源码
+ * Note：部分参考了 @/ui-util 中 getWindowWidth() 的源码
  */
 export function getWindowWidth(): number {
   if (!isClient) return
