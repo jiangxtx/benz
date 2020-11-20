@@ -1,0 +1,43 @@
+
+.wrapper {
+  position: relative;
+}
+
+.container {
+  position: relative;
+  height: 0.32rem;
+  width: 0.51rem;
+  border-radius: 0.32rem;
+  background-color: rgb(77, 216, 101);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  &.disabled {
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.1) !important;
+    opacity: 0.5;
+  }
+}
+
+.switchBtn {
+  height: 0.28rem;
+  width: 0.28rem;
+  border-radius: 0.28rem;
+  background-color: #fff;
+  box-shadow: 0 0.01rem 0.02rem 0.01rem rgba(0, 0, 0, 0.2);
+  margin-right: 0.02rem;
+  position: absolute;
+  top: 0.02rem;
+  right: 0;
+}
+
+.containerOff {
+  background-color: #ccc;
+  justify-content: flex-start;
+
+  .switchBtn {
+    margin-left: 0.02rem;
+    left: 0;
+  }
+}
