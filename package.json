@@ -57,6 +57,7 @@
     "validate-commit-msg": "^2.14.0"
   },
   "devDependencies": {
+    "isomorphic-style-loader": "^5.1.0",
     "stylelint": "^9.10.1",
     "stylelint-config-standard": "^20.0.0"
   }
