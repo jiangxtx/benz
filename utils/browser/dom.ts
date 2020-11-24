@@ -92,3 +92,21 @@ export function getWindowWidth(): number {
   windowWidth = window.innerWidth || document.body.offsetWidth || 375
   return windowWidth
 }
+
+/**
+ * 依据el元素来获取对应的原生DOM元素
+ * @param el {String|HTMLElement|null}
+ */
+export function getNode(el): HTMLElement {
+  if (!isClient) return null
+
+  if (typeof el === 'string') {
+    return document.getElementById(el)
+  }
+
+  if (el instanceof HTMLElement && el.nodeType === 1) {
+    return el
+  }
+
+  return null
+}
