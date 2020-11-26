@@ -7,17 +7,17 @@
  * @param {*} str
  */
 export function toCamel(str: string, split = '_'): string {
-	if (typeof str !== 'string') {
-		return str
-	}
+  if (typeof str !== 'string') {
+    return str
+  }
 
-	const multiSplit = `\\${split}{1,}`
-	const startReg = new RegExp(`^${multiSplit}`)
-	const endReg = new RegExp(`${multiSplit}$`)
-	return str
-		.replace(startReg, '')
-		.replace(endReg, '')
-		.replace(new RegExp(`${multiSplit}(\\w)`, 'g'), (all, letter) => letter.toUpperCase())
+  const multiSplit = `\\${split}{1,}`
+  const startReg = new RegExp(`^${multiSplit}`)
+  const endReg = new RegExp(`${multiSplit}$`)
+  return str
+    .replace(startReg, '')
+    .replace(endReg, '')
+    .replace(new RegExp(`${multiSplit}(\\w)`, 'g'), (_, letter) => letter.toUpperCase())
 }
 
 /**
@@ -26,7 +26,7 @@ export function toCamel(str: string, split = '_'): string {
  * @param {*} str
  */
 export function underline2Camel(str: string): string {
-	return toCamel(str, '_')
+  return toCamel(str, '_')
 }
 
 /**
@@ -34,10 +34,10 @@ export function underline2Camel(str: string): string {
  * @param str
  */
 export function camel2Underline(str: string): string {
-	if (typeof str !== 'string') return str
+  if (typeof str !== 'string') return str
 
-	return str
-		.replace(/([A-Z])/g, '_$1')
-		.toLowerCase()
-		.replace(/^_/, '') /* 移除开头的“_” */
+  return str
+    .replace(/([A-Z])/g, '_$1')
+    .toLowerCase()
+    .replace(/^_/, '') /* 移除开头的“_” */
 }

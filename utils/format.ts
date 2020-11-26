@@ -1,12 +1,12 @@
 import { camel2Underline } from './string'
 
 export function tryDo(fc, defaultVal = null): any {
-	try {
-		const value = fc && fc()
-		return value == null ? defaultVal : value
-	} catch (_) {
-		return defaultVal
-	}
+  try {
+    const value = fc && fc()
+    return value == null ? defaultVal : value
+  } catch (_) {
+    return defaultVal
+  }
 }
 
 export default tryDo
@@ -20,32 +20,32 @@ export default tryDo
  * @param {*} obj
  */
 export function forceNilVal2Undefined(obj): any {
-	if (obj === null) return undefined
+  if (obj === null) return undefined
 
-	if (Array.isArray(obj)) {
-		return obj.map((item) => forceNilVal2Undefined(item))
-	}
+  if (Array.isArray(obj)) {
+    return obj.map((item) => forceNilVal2Undefined(item))
+  }
 
-	if (typeof obj === 'object') {
-		const keys = Object.keys(obj) || []
+  if (typeof obj === 'object') {
+    const keys = Object.keys(obj) || []
 
-		return keys.reduce((prev, curr) => {
-			// eslint-disable-next-line no-param-reassign
-			prev[curr] = forceNilVal2Undefined(obj[curr])
-			return prev
-		}, {})
-	}
+    return keys.reduce((prev, curr) => {
+      // eslint-disable-next-line no-param-reassign
+      prev[curr] = forceNilVal2Undefined(obj[curr])
+      return prev
+    }, {})
+  }
 
-	return obj
+  return obj
 }
 
 /**
-* 避免null的干扰，返回一个可安全解构的对象。
-* @param {*} obj
-*/
+ * 避免null的干扰，返回一个可安全解构的对象。
+ * @param {*} obj
+ */
 export function safeDeconstruct(obj): any {
-	const defaultValue = Array.isArray(obj) ? [] : {}
-	return forceNilVal2Undefined(obj || defaultValue)
+  const defaultValue = Array.isArray(obj) ? [] : {}
+  return forceNilVal2Undefined(obj || defaultValue)
 }
 
 /**
@@ -58,33 +58,34 @@ export function safeDeconstruct(obj): any {
  * @param isNil2Undefined {Boolean} 是否需要把null值转化为undefined，默认为：true，具体说明参考：forceNilVal2Undefined()
  */
 export function formatCamelKeys2Underline(obj: any, isNil2Undefined?: boolean): any {
-	isNil2Undefined = typeof isNil2Undefined === 'boolean' ?
-		isNil2Undefined :
-		true
+  isNil2Undefined = typeof isNil2Undefined === 'boolean' ? isNil2Undefined : true
 
-	if (obj === null) {
-		return isNil2Undefined ? undefined : obj
-	}
+  if (obj === null) {
+    return isNil2Undefined ? undefined : obj
+  }
 
-	if (typeof obj === 'string') {
-		return camel2Underline(obj)
-	}
+  if (typeof obj === 'string') {
+    return camel2Underline(obj)
+  }
 
-	if (Array.isArray(obj)) {
-		return obj.map((item) => formatCamelKeys2Underline(item, isNil2Undefined))
-	}
+  if (Array.isArray(obj)) {
+    return obj.map((item) => formatCamelKeys2Underline(item, isNil2Undefined))
+  }
 
-	if (typeof obj === 'object') {
-		return Object.keys(obj).reduce((prev, cur) => {
-			const key = camel2Underline(cur)
-			const val = obj[cur]
-			prev[key] = val == null ?
-				(isNil2Undefined ? undefined : val) :
-				formatCamelKeys2Underline(val, isNil2Undefined)
+  if (typeof obj === 'object') {
+    return Object.keys(obj).reduce((prev, cur) => {
+      const key = camel2Underline(cur)
+      const val = obj[cur]
+      prev[key] =
+        val == null
+          ? isNil2Undefined
+            ? undefined
+            : val
+          : formatCamelKeys2Underline(val, isNil2Undefined)
 
-			return prev
-		}, {})
-	}
+      return prev
+    }, {})
+  }
 
-	return obj
+  return obj
 }
