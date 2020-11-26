@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "noPush": "echo \"Error: No Push in Company!!\" && exit 1"
+    "noPush": "echo \"Error: No Push in Company!!\" && exit 1",
+    "canPush": "echo \"pushing...\" "
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,7 @@
     "hooks": {
       "pre-commit": "lint-staged",
       "commit-msg": "validate-commit-msg",
-      "pre-push": "npm run noPush"
+      "pre-push": "npm run canPush"
     }
   },
   "lint-staged": {
