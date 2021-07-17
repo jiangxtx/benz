@@ -30,7 +30,7 @@ function unique(arr) {
 
 ### 扁平化处理flatten
 
-**方法一：**递归法实现
+**方法一：** 递归法实现
 
 优点：属于稳定扁平化处理，不会改变原始数组中各个元素的相对顺序。
 
@@ -53,13 +53,15 @@ function flatten(arr, list) {
     }
     return list;
 }
+```
 
-**方法二：**循环法实现
+**方法二：** 循环法实现
 
 优点：速度快，性能好。
 
 缺点：属于不稳定的扁平化处理，可能会改变原始数组中各个元素的相对顺序。
 
+```js
 /**
  * 循环法实现数组flatten
  * var arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];
@@ -88,7 +90,7 @@ function flatten(arr) {
 }
 ```
 
-**方法三：**递归迭代法实现，支持迭代层级设置【from MDN】
+**方法三：** 递归迭代法实现，支持迭代层级设置【from MDN】
 
 思想和方法一类似。
 
@@ -108,7 +110,7 @@ function flatten(arr, depth = 1) {
 }
 ```
 
-**方法四：**Use a Stack【from MDN】
+**方法四：** Use a Stack【from MDN】
 
 refer: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat
 
@@ -136,7 +138,7 @@ function flatten(input) {
 }
 ```
 
-**方法五：**Use Generator Function【from MDN】
+**方法五：** Use Generator Function【from MDN】
 
 此法，新天下耳目哉！
 
@@ -157,5 +159,19 @@ function* flatten(array, depth) {
 const arr = [1, 2, [3, 4, [5, 6]]];
 const flattened = [...flatten(arr, Infinity)];
 // [1, 2, 3, 4, 5, 6]
+```
+
+**方法六：** ES6书写方式
+
+也是通过循环法，结合`ES6`的`array.some`来巧妙的实现该功能。
+
+不过，缺陷也明显，那就是效率比较低下。
+
+```js
+function flatten(array) {
+    while(array.some(item => Array.isArray(item)))
+    array = [].concat(...array);
+    return array
+}
 ```
 
