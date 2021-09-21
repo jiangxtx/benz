@@ -1,0 +1,19 @@
+.codeWrap {
+  position: relative;
+}
+
+.msg {
+  color: #fff;
+  background: #e02e24;
+  font-size: 0.14rem;
+  padding: 0.02rem 0.08rem;
+  border-radius: 0.04rem;
+
+  &.disabled {
+    background: #fbe0de;
+  }
+}
+
+.countDown {
+  color: #9c9c9c;
+}

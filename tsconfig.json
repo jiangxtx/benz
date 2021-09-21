@@ -1,0 +1,39 @@
+{
+    "compilerOptions": {
+        "pretty": true,
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": ".",
+        "jsx": "preserve",
+        "lib": [
+            "dom",
+            "es2017"
+        ],
+        "module": "esnext",
+        "moduleResolution": "node",
+        "noEmit": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "preserveConstEnums": true,
+        "removeComments": false,
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "strict": false,
+        "target": "esnext",
+        "experimentalDecorators": true,
+        "resolveJsonModule": true,
+        "maxNodeModuleJsDepth": 3,
+        "paths": {
+            "utils": ["utils/*"],
+            "widgets": ["widgets/*"],
+         }
+    },
+    "exclude": [
+        ".happypack",
+        "dist",
+        "build",
+        "server-dist",
+        "static-dist",
+        "node_modules"
+    ]
+}
